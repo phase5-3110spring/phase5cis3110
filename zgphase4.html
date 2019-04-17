@@ -17,7 +17,7 @@
 
 
 var images = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"];
-console.log(images);
+
 var caption = [
     "The Witcher 3: Wild Hunt", 
     "Sekiro: Shadows Die Twice", 
@@ -25,7 +25,7 @@ var caption = [
     "The Legend of Zelda: Breath of the Wild", 
     "DARK SOULS III", 
     "Metal Gear Solid V: The Phantom Pain"];
-console.log(caption);
+
 var description = [
     "The Witcher 3: Wild Hunt is a 2015 action role-playing game developed and published by CD Projekt.", 
     "Sekiro: Shadows Die Twice is an action-adventure video game developed by FromSoftware and published by Activision.", 
@@ -34,7 +34,7 @@ var description = [
     "Dark Souls III is an action role-playing video game developed by FromSoftware and published by Bandai Namco Entertainment.", 
     "Metal Gear Solid V: The Phantom Pain is an action-adventure stealth game developed by Kojima Productions and published by Konami."
     ];
-console.log(description);
+
 var price =["$10","$20","$30","$40","$50","$60"];
 
 var url;
@@ -49,16 +49,13 @@ row.setAttribute("class", "row");
 
 for(var i=0; i<images.length; i++)
 {
-    // var containMe = document.getElementsByClassName("containMe");
+
     var col = document.createElement("div");
     col.setAttribute("class", "col-sm-4");
-    console.log(caption[i]);
     
     var title = document.createTextNode(caption[i]);
     var l = document.createElement("p");
     l.setAttribute("class","card-title");
-    // l.appendChild(title);
-
 
     console.log("image in iteration is " + images[i]);
     url = "https://s3-us-west-2.amazonaws.com/3110phase1/phase04/" + images[i];
@@ -66,26 +63,20 @@ for(var i=0; i<images.length; i++)
 
     var imgDiv = document.createElement("div");
     imgDiv.setAttribute("class", "card bg-light mb-3");
-    // imgDiv.setAttribute("style", "height: 50px;")
 
     var imgInDiv = document.createElement("img");
     imgInDiv.setAttribute("class","card-img-top");
     imgInDiv.setAttribute("src", url);
 
     var link = document.createElement("a");
-    link.setAttribute("href", urlOfDetailPage);// <a href=url></a>
-    // link.appendChild(imgInDiv);//picture link to detail page
+    link.setAttribute("href", urlOfDetailPage);
 
-    console.log(description[i]);
     var descriptionForCar = document.createTextNode(description[i]);
     var d = document.createElement("P");
     d.setAttribute("class", "card-text");
 
-    // d.appendChild(descriptionForCar);
 
-// check first 
     var onclickParam = "checkCookie("+ i + ")";
-    // var onclickParam = "setCookie("+ i + ", " + "1" + ", " + "30" + ")";// setCookie(iCoolie, cookieValue, 30);
     var onclikeDelete = "removeCookie("+ i + ")";
 
     var buttonGroup = document.createElement("div");
@@ -103,40 +94,26 @@ for(var i=0; i<images.length; i++)
     unlikeButton.setAttribute("onclick", onclikeDelete);
     unlikeButton.innerHTML="Unlike";
 
-    // var priceID = "checkForI("+i+")";//not finish
-
     var collapse = document.createElement("button");
     collapse.setAttribute("class", "btn btn-secondary");
     collapse.setAttribute("data-toggle", "collapse");
-    collapse.setAttribute("data-target", "#multiCollapseDetail");//need fix
+    collapse.setAttribute("data-target", "#multiCollapseDetail");
     collapse.setAttribute("aria-expanded", "false");
     collapse.setAttribute("aria-controls", "collapseDetail");
     collapse.innerHTML="Price";
-    console.log(i);
 
     var collapseDetail = document.createElement("div");
     collapseDetail.setAttribute("class", "collapse multi-collapse");
     collapseDetail.setAttribute("id", "multiCollapseDetail");
-    console.log(i);
 
     var detail = document.createElement("div");
     detail.setAttribute("class", "card card-body");
     detail.innerHTML=price[i];
-    console.log(i);
-    console.log(price[i]);
 
     collapseDetail.appendChild(detail);
 
-
     var checkC = checkUnexpiredCookie(i);
 
-    // if (checkC == "y")
-    // {
-    //     var likeIcon = document.createElement("img");
-    //     likeIcon.setAttribute("class", "");
-    //     likeIcon.setAttribute("src", like);
-    //     imgDiv.appendChild(likeIcon);
-    // }
     buttonGroup.appendChild(likeButton);
     buttonGroup.appendChild(unlikeButton);
     buttonGroup.appendChild(collapse);
@@ -144,15 +121,10 @@ for(var i=0; i<images.length; i++)
     l.appendChild(title);
     link.appendChild(imgInDiv);
     d.appendChild(descriptionForCar);
-    // d.appendChild(buttonGroup);
-
 
     imgDiv.appendChild(link);//image link
     imgDiv.appendChild(l);//caption
     imgDiv.appendChild(d);//description
-
-    // imgDiv.appendChild(likeButton);
-    // imgDiv.appendChild(unlikeButton);
 
     imgDiv.appendChild(buttonGroup);
     imgDiv.appendChild(collapseDetail);
@@ -228,30 +200,10 @@ function checkUnexpiredCookie(cookieName)
 
 function removeCookie(cookieName)
 {
-    // var deleteCookie = "like" + cookieName;
     setCookie(cookieName, "1", -1);
     window.location.reload();
     return "";
 }
-
-function checkForI(i){
-    if(i==0)
-        return multiCollapse0;
-    else if(i==1)
-        return multiCollapse1;
-    else if(i==2)
-        return multiCollapse2;
-    else if(i==3)
-        return multiCollapse3;
-    else if(i==4)
-        return multiCollapse4;
-    else if(i==5)
-        return multiCollapse5;
-}
-
-function test(num){
-    console.log(num);
-}//mar 28
 
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
