@@ -1,0 +1,350 @@
+<html><head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="go.css">
+
+</head>
+
+
+
+
+<!-- Image and text -->
+<body onload="checkCookie()"><nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+  <a class="navbar-brand" href="https://www.cpp.edu/">
+    <img src="https://s3.amazonaws.com/3110.spring/Phase+4/logo.png" width="426" height="118" class="d-inline-block align-top">
+  </a>
+</nav>
+
+
+
+
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+	<a><b>Nav Sahota</b></a>
+
+
+
+<div class="card" style="width: 18rem;">
+  <img src="https://s3.amazonaws.com/3110.spring/Phase+4/banner.jpg" class="card-img-top">
+  <div class="card-body">
+
+  </div>
+</div>
+
+
+
+
+	<div class="dropdown">
+  		<button class="dropbtn">Group Members</button>
+
+  		<div class="dropdown-content">
+    		<a href="https://www.google.com/">David</a>
+    		<a href="https://www.google.com/">Abhishek</a>
+    		<a href="https://www.google.com/">Steven</a>
+    		<a href="https://www.google.com/">Wesley</a>
+  		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="containMe" id="grid"><div class="box"><div class="imgDiv"><a href="detailpage1.html?img=https://s3.amazonaws.com/3110.spring/Phase+3/1.jpg&amp;caption=Acura RSX Type S&amp;description=This is my personal car, I got this car completely stock when I was a senior in high school and have been working on it and building it ever since I first got it" id="a0"><img class="pctImg" id="img0" src="https://s3.amazonaws.com/3110.spring/Phase+3/1.jpg"></a></div><h3 class="caption">Acura RSX Type S</h3><button type="button" class="buttons" id="btnFav0">Favorite</button><button type="button" class="buttons" id="btnUnfav0">Unfavorite</button></div><div class="box"><div class="imgDiv"><a href="detailpage1.html?img=https://s3.amazonaws.com/3110.spring/Phase+3/2.jpg&amp;caption=Honda Civic Type R&amp;description=Honda Civic Type R, aka the EK9 is one of the most iconic and arguably the best Civic Type R ever made, it is lightweight and has excellent handling" id="a1"><img class="pctImg" id="img1" src="https://s3.amazonaws.com/3110.spring/Phase+3/2.jpg"></a></div><h3 class="caption">Honda Civic Type R</h3><button type="button" class="buttons" id="btnFav1">Favorite</button><button type="button" class="buttons" id="btnUnfav1">Unfavorite</button></div><div class="box"><div class="imgDiv"><a href="detailpage1.html?img=https://s3.amazonaws.com/3110.spring/Phase+3/3.jpg&amp;caption=Mazda RX7&amp;description=The Mazda RX7 is one of the most iconic Japanese Tuner cars from the 90's, and is still extremely sought after and valued today " id="a2"><img class="pctImg" id="img2" src="https://s3.amazonaws.com/3110.spring/Phase+3/3.jpg"></a></div><h3 class="caption">Mazda RX7</h3><button type="button" class="buttons" id="btnFav2">Favorite</button><button type="button" class="buttons" id="btnUnfav2">Unfavorite</button></div><div class="box"><div class="imgDiv"><a href="detailpage1.html?img=https://s3.amazonaws.com/3110.spring/Phase+3/4.jpg&amp;caption=Corolla AE86&amp;description=The Corolla AE86 is known around the world as one of the best and original drift cars, it was one of the only RWD Corollas ever made, unfortunately it was never made for sale in the states and must still be imported" id="a3"><img class="pctImg" id="img3" src="https://s3.amazonaws.com/3110.spring/Phase+3/4.jpg"></a></div><h3 class="caption">Corolla AE86</h3><button type="button" class="buttons" id="btnFav3">Favorite</button><button type="button" class="buttons" id="btnUnfav3">Unfavorite</button></div><div class="box"><div class="imgDiv"><a href="detailpage1.html?img=https://s3.amazonaws.com/3110.spring/Phase+3/5.jpg&amp;caption=Mitsubishi Evo 9&amp;description=The Mitsubishi Evo 9 is one of my dream cars that I hope to own one day. They hold their value extremely well and are known for their large turbos and high boost" id="a4"><img class="pctImg" id="img4" src="https://s3.amazonaws.com/3110.spring/Phase+3/5.jpg"></a></div><h3 class="caption">Mitsubishi Evo 9</h3><button type="button" class="buttons" id="btnFav4">Favorite</button><button type="button" class="buttons" id="btnUnfav4">Unfavorite</button></div><div class="box"><div class="imgDiv"><a href="detailpage1.html?img=https://s3.amazonaws.com/3110.spring/Phase+3/6.jpg&amp;caption=Mazda FD3S&amp;description=The Mazda FD3S is the JDM RX7 this particular one is kitted with the Endless Japan body kit and is sitting on Advan wheels from Japan" id="a5"><img class="pctImg" id="img5" src="https://s3.amazonaws.com/3110.spring/Phase+3/6.jpg"></a></div><h3 class="caption">Mazda FD3S</h3><button type="button" class="buttons" id="btnFav5">Favorite</button><button type="button" class="buttons" id="btnUnfav5">Unfavorite</button></div></div>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"> </script>
+	<script>
+		var images = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"];
+		var caps = ["Acura RSX Type S", "Honda Civic Type R", "Mazda RX7", "Corolla AE86", "Mitsubishi Evo 9", "Mazda FD3S"];
+		var descs = ["This is my personal car, I got this car completely stock when I was a senior in high school and have been working on it and building it ever since I first got it", 
+ "Honda Civic Type R, aka the EK9 is one of the most iconic and arguably the best Civic Type R ever made, it is lightweight and has excellent handling", 
+ "The Mazda RX7 is one of the most iconic Japanese Tuner cars from the 90's, and is still extremely sought after and valued today ", 
+ "The Corolla AE86 is known around the world as one of the best and original drift cars, it was one of the only RWD Corollas ever made, unfortunately it was never made for sale in the states and must still be imported", "The Mitsubishi Evo 9 is one of my dream cars that I hope to own one day. They hold their value extremely well and are known for their large turbos and high boost", "The Mazda FD3S is the JDM RX7 this particular one is kitted with the Endless Japan body kit and is sitting on Advan wheels from Japan"]; 
+
+
+
+
+
+		var url;
+		var urlOfDetailPage;
+		var cookieUrl;
+
+		var star = document.createElement("img");
+		var starUrl = "https://s3.amazonaws.com/3110.spring/Phase+3/hug.png";
+		star.setAttribute("class", "star");
+		star.setAttribute("src", starUrl);
+
+		var url0;
+		var url1;
+		var url2;
+		var url3;
+		var url4;
+		var url5;
+
+		for (var i=0; i<images.length; i++)
+		{
+			console.log("image in iteration is " + images[i]);
+
+			url = "https://s3.amazonaws.com/3110.spring/Phase+3/" + images[i];
+			urlOfDetailPage = "detailpage1.html?" + "img=" + url + "&" + "caption=" + caps[i] + "&" + "description=" + descs[i];
+
+			var grid = document.getElementById("grid");
+			var box = document.createElement("div");
+			box.setAttribute("class", "box");
+			var imgDiv = document.createElement("div");
+			imgDiv.setAttribute("class", "imgDiv");
+
+			var imgInDiv = document.createElement("img");
+			imgInDiv.setAttribute("class","pctImg");
+			imgInDiv.setAttribute("id", "img" + i);
+			imgInDiv.setAttribute("src", url);
+
+			var link = document.createElement("a");
+			link.setAttribute("href", urlOfDetailPage);
+			link.setAttribute("id", "a" + i);
+			link.appendChild(imgInDiv);
+			imgDiv.appendChild(link);
+
+			
+			
+			var caption = caps[i];
+			var capNode = document.createTextNode(caption);
+			var h = document.createElement("h3");
+			h.setAttribute("class", "caption")
+			h.appendChild(capNode);
+
+			var favButton = document.createElement("button");
+			favButton.setAttribute("type", "button");
+			favButton.setAttribute("class", "buttons");
+			favButton.setAttribute("id","btnFav" + i);
+			var favNode = document.createTextNode("Favorite");
+			favButton.appendChild(favNode);
+
+			var unfavButton = document.createElement("button");
+			unfavButton.setAttribute("type", "button");
+			unfavButton.setAttribute("class", "buttons");
+			unfavButton.setAttribute("id","btnUnfav" + i);
+			var unfavNode = document.createTextNode("Unfavorite");
+			unfavButton.appendChild(unfavNode);
+
+
+			//document.body.appendChild(capDiv);
+			box.appendChild(imgDiv);
+			box.appendChild(h);
+			box.appendChild(favButton);
+			box.appendChild(unfavButton);
+			grid.appendChild(box);
+		}
+
+		$(document).ready(function(){
+
+
+			$("#btnFav0").click(function(){
+				$("#btnFav0").hide();
+				btnFav0.parentNode.appendChild(star);
+				cookieUrl = document.getElementById("img0").src;
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				url0 = document.getElementById("a0").href;
+				var urlOfDetailPageFav = url0 + "&fav=on";
+				console.log("url of fav detail page = " + urlOfDetailPageFav);
+				$('#a0').attr("href", urlOfDetailPageFav);
+			});
+
+			$("#btnUnfav0").click(function(){
+				$("#btnFav0").show();
+				star.remove(star);
+				cookieUrl = "";
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				$('#a0').attr("href", url0);
+			});
+
+			$("#btnFav1").click(function(){
+				$("#btnFav1").hide();
+				btnFav1.parentNode.appendChild(star);
+				cookieUrl = document.getElementById("img1").src;
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				url1 = document.getElementById("a1").href;
+				var urlOfDetailPageFav = url1 + "&fav=on";
+				console.log("url of fav detail page = " + urlOfDetailPageFav);
+				$('#a1').attr("href", urlOfDetailPageFav);
+			});
+
+			$("#btnUnfav1").click(function(){
+				$("#btnFav1").show();
+				star.remove(star);
+				cookieUrl = "";
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				$('#a1').attr("href", url1);
+			});
+
+			$("#btnFav2").click(function(){
+				$("#btnFav2").hide();
+				btnFav2.parentNode.appendChild(star);
+				cookieUrl = document.getElementById("img2").src;
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				url2 = document.getElementById("a2").href;
+				var urlOfDetailPageFav = url2 + "&fav=on";
+				console.log("url of fav detail page = " + urlOfDetailPageFav);
+				$('#a2').attr("href", urlOfDetailPageFav);
+			});
+
+			$("#btnUnfav2").click(function(){
+				$("#btnFav2").show();
+				star.remove(star);
+				cookieUrl = "";
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				$('#a2').attr("href", url2);
+			});
+
+			$("#btnFav3").click(function(){
+				$("#btnFav3").hide();
+				btnFav3.parentNode.appendChild(star);
+				cookieUrl = document.getElementById("img3").src;
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				url3 = document.getElementById("a3").href;
+				var urlOfDetailPageFav = url3 + "&fav=on";
+				console.log("url of fav detail page = " + urlOfDetailPageFav);
+				$('#a3').attr("href", urlOfDetailPageFav);
+			});
+
+			$("#btnUnfav3").click(function(){
+				$("#btnFav3").show();
+				star.remove(star);
+				cookieUrl = "";
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				$('#a3').attr("href", url3);
+			});
+
+			$("#btnFav4").click(function(){
+				$("#btnFav4").hide();
+				btnFav4.parentNode.appendChild(star);
+				cookieUrl = document.getElementById("img4").src;
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				url4 = document.getElementById("a4").href;
+				var urlOfDetailPageFav = url4 + "&fav=on";
+				console.log("url of fav detail page = " + urlOfDetailPageFav);
+				$('#a4').attr("href", urlOfDetailPageFav);
+			});
+
+			$("#btnUnfav4").click(function(){
+				$("#btnFav4").show();
+				star.remove(star);
+				cookieUrl = "";
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				$('#a4').attr("href", url4);
+			});
+
+			$("#btnFav5").click(function(){
+				$("#btnFav5").hide();
+				btnFav5.parentNode.appendChild(star);
+				cookieUrl = document.getElementById("img5").src;
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				url5 = document.getElementById("a5").href;
+				var urlOfDetailPageFav = url5 + "&fav=on";
+				console.log("url of fav detail page = " + urlOfDetailPageFav);
+				$('#a5').attr("href", urlOfDetailPageFav);
+			});
+
+			$("#btnUnfav5").click(function(){
+				$("#btnFav5").show();
+				star.remove(star);
+				cookieUrl = "";
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				$('#a5').attr("href", url5);
+			});
+		});
+
+		function setCookie(cname, cvalue, exdays) {
+
+			var d = new Date();
+			d.setTime(d.getTime() + (exdays*24*60*60*1000));
+			var expires = "expires=" + d.toGMTString();
+			//console.log("expires in " + expires);
+			document.cookie = cname + "=" + cvalue + "; " + expires;
+			console.log("cookie is " + document.cookie);
+		}
+
+		function getCookie(cname) {
+    		var name = cname + "=";
+    		var ca = document.cookie.split(';');
+    		for(var i=0; i<ca.length; i++) {
+        		var c = ca[i];
+        		while (c.charAt(0)==' ') c = c.substring(1);
+        		if (c.indexOf(name) == 0) {
+            		return c.substring(name.length, c.length);
+        		}
+    		}
+    		return "";
+		}
+
+		function checkCookie() {
+    		var c = document.cookie;
+    		console.log("cookie checker is " + c);
+    		if (c != "") {
+        		if (c == "url=https://s3.amazonaws.com/3110.spring/Phase+3/1.jpg"){
+        			var btn = document.getElementById("btnFav0");
+        			$("#btnFav0").hide();
+        			btnFav0.parentNode.appendChild(star);
+        			url0 = document.getElementById("a0").href;
+					var urlOfDetailPageFav = url0 + "&fav=on";
+					$('#a0').attr("href", urlOfDetailPageFav);
+        		} else if (c == "url=https://s3.amazonaws.com/3110.spring/Phase+3/2.jpg"){
+        			var btn = document.getElementById("btnFav1");
+        			$("#btnFav1").hide();
+        			btnFav1.parentNode.appendChild(star);
+        			url1 = document.getElementById("a1").href;
+					var urlOfDetailPageFav = url1 + "&fav=on";
+					$('#a1').attr("href", urlOfDetailPageFav);
+        		} else if (c == "url=https://s3.amazonaws.com/3110.spring/Phase+3/3.jpg"){
+        			var btn = document.getElementById("btnFav2");
+        			$("#btnFav2").hide();
+        			btnFav2.parentNode.appendChild(star);
+        			url2 = document.getElementById("a2").href;
+					var urlOfDetailPageFav = url2 + "&fav=on";
+					$('#a2').attr("href", urlOfDetailPageFav);
+        		} else if (c == "url=https://s3.amazonaws.com/3110.spring/Phase+3/4.jpg"){
+        			var btn = document.getElementById("btnFav3");
+        			$("#btnFav3").hide();
+        			btnFav3.parentNode.appendChild(star);
+        			url3 = document.getElementById("a3").href;
+					var urlOfDetailPageFav = url3 + "&fav=on";
+					$('#a3').attr("href", urlOfDetailPageFav);
+        		} else if (c == "url=https://s3.amazonaws.com/3110.spring/Phase+3/5.jpg"){
+        			var btn = document.getElementById("btnFav0");
+        			$("#btnFav4").hide();
+        			btnFav4.parentNode.appendChild(star);
+        			url4 = document.getElementById("a4").href;
+					var urlOfDetailPageFav = url4 + "&fav=on";
+					$('#a4').attr("href", urlOfDetailPageFav);
+        		} else if (c == "url=https://s3.amazonaws.com/3110.spring/Phase+3/6.jpg"){
+        			var btn = document.getElementById("btnFav5");
+        			$("#btnFav5").hide();
+        			btnFav5.parentNode.appendChild(star);
+        			url5 = document.getElementById("a5").href;
+					var urlOfDetailPageFav = url5 + "&fav=on";
+					$('#a5').attr("href", urlOfDetailPageFav);
+        		}
+    		} 
+    	}
+
+
+	</script>
+
+</nav></body></html>
