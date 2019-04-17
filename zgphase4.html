@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="page">Home</li>
+        </ol>
+      </nav>
+</body>  
+
+<script>
+
+
+
+var images = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"];
+console.log(images);
+var caption = [
+    "The Witcher 3: Wild Hunt", 
+    "Sekiro: Shadows Die Twice", 
+    "Anno 1800", 
+    "The Legend of Zelda: Breath of the Wild", 
+    "DARK SOULS III", 
+    "Metal Gear Solid V: The Phantom Pain"];
+console.log(caption);
+var description = [
+    "The Witcher 3: Wild Hunt is a 2015 action role-playing game developed and published by CD Projekt.", 
+    "Sekiro: Shadows Die Twice is an action-adventure video game developed by FromSoftware and published by Activision.", 
+    "Anno 1800 is a city building real-time strategy video game, developed by Blue Byte and published by Ubisoft", 
+    "The Legend of Zelda: Breath of the Wild is an action-adventure game developed and published by Nintendo.", 
+    "Dark Souls III is an action role-playing video game developed by FromSoftware and published by Bandai Namco Entertainment.", 
+    "Metal Gear Solid V: The Phantom Pain is an action-adventure stealth game developed by Kojima Productions and published by Konami."
+    ];
+console.log(description);
+var price =["$10","$20","$30","$40","$50","$60"];
+
+var url;
+
+var container = document.createElement("div");
+container.setAttribute("class","container");
+var like = "https://s3-us-west-2.amazonaws.com/3110phase1/phase04/like.png";
+
+var row = document.createElement("div");
+row.setAttribute("class", "row");
+
+
+for(var i=0; i<images.length; i++)
+{
+    // var containMe = document.getElementsByClassName("containMe");
+    var col = document.createElement("div");
+    col.setAttribute("class", "col-sm-4");
+    console.log(caption[i]);
+    
+    var title = document.createTextNode(caption[i]);
+    var l = document.createElement("p");
+    l.setAttribute("class","card-title");
+    // l.appendChild(title);
+
+
+    console.log("image in iteration is " + images[i]);
+    url = "https://s3-us-west-2.amazonaws.com/3110phase1/phase04/" + images[i];
+    urlOfDetailPage = "detailPage4.html?" + "img=" + url + "&Caption=" + caption[i] + "&Description=" + description[i] + "&i=" + i;
+
+    var imgDiv = document.createElement("div");
+    imgDiv.setAttribute("class", "card bg-light mb-3");
+    // imgDiv.setAttribute("style", "height: 50px;")
+
+    var imgInDiv = document.createElement("img");
+    imgInDiv.setAttribute("class","card-img-top");
+    imgInDiv.setAttribute("src", url);
+
+    var link = document.createElement("a");
+    link.setAttribute("href", urlOfDetailPage);// <a href=url></a>
+    // link.appendChild(imgInDiv);//picture link to detail page
+
+    console.log(description[i]);
+    var descriptionForCar = document.createTextNode(description[i]);
+    var d = document.createElement("P");
+    d.setAttribute("class", "card-text");
+
+    // d.appendChild(descriptionForCar);
+
+// check first 
+    var onclickParam = "checkCookie("+ i + ")";
+    // var onclickParam = "setCookie("+ i + ", " + "1" + ", " + "30" + ")";// setCookie(iCoolie, cookieValue, 30);
+    var onclikeDelete = "removeCookie("+ i + ")";
+
+    var buttonGroup = document.createElement("div");
+    buttonGroup.setAttribute("class", "btn-group");
+    buttonGroup.setAttribute("role", "group");
+    buttonGroup.setAttribute("aria-label", "like button group");
+
+    var likeButton = document.createElement("button");// likeButton.setAttribute("text", "button");
+    likeButton.setAttribute("class", "btn btn-secondary");//set css
+    likeButton.setAttribute("onclick", onclickParam);
+    likeButton.innerHTML="Like";
+
+    var unlikeButton = document.createElement("button");
+    unlikeButton.setAttribute("class", "btn btn-secondary");//set css
+    unlikeButton.setAttribute("onclick", onclikeDelete);
+    unlikeButton.innerHTML="Unlike";
+
+    // var priceID = "checkForI("+i+")";//not finish
+
+    var collapse = document.createElement("button");
+    collapse.setAttribute("class", "btn btn-secondary");
+    collapse.setAttribute("data-toggle", "collapse");
+    collapse.setAttribute("data-target", "#multiCollapseDetail");//need fix
+    collapse.setAttribute("aria-expanded", "false");
+    collapse.setAttribute("aria-controls", "collapseDetail");
+    collapse.innerHTML="Price";
+    console.log(i);
+
+    var collapseDetail = document.createElement("div");
+    collapseDetail.setAttribute("class", "collapse multi-collapse");
+    collapseDetail.setAttribute("id", "multiCollapseDetail");
+    console.log(i);
+
+    var detail = document.createElement("div");
+    detail.setAttribute("class", "card card-body");
+    detail.innerHTML=price[i];
+    console.log(i);
+    console.log(price[i]);
+
+    collapseDetail.appendChild(detail);
+
+
+    var checkC = checkUnexpiredCookie(i);
+
+    // if (checkC == "y")
+    // {
+    //     var likeIcon = document.createElement("img");
+    //     likeIcon.setAttribute("class", "");
+    //     likeIcon.setAttribute("src", like);
+    //     imgDiv.appendChild(likeIcon);
+    // }
+    buttonGroup.appendChild(likeButton);
+    buttonGroup.appendChild(unlikeButton);
+    buttonGroup.appendChild(collapse);
+
+    l.appendChild(title);
+    link.appendChild(imgInDiv);
+    d.appendChild(descriptionForCar);
+    // d.appendChild(buttonGroup);
+
+
+    imgDiv.appendChild(link);//image link
+    imgDiv.appendChild(l);//caption
+    imgDiv.appendChild(d);//description
+
+    // imgDiv.appendChild(likeButton);
+    // imgDiv.appendChild(unlikeButton);
+
+    imgDiv.appendChild(buttonGroup);
+    imgDiv.appendChild(collapseDetail);
+ 
+    if (checkC == "y")
+    {
+        var likeIcon = document.createElement("img");
+        likeIcon.setAttribute("class", "img-thumbnail");
+        likeIcon.setAttribute("src", like);
+        imgDiv.appendChild(likeIcon);
+    }
+
+    col.appendChild(imgDiv);
+    row.appendChild(col);
+    container.appendChild(row);
+
+}
+document.body.appendChild(container);
+
+function setCookie(cookieName,cookieValue,expiresDays)
+{
+    console.log("set");
+    var date = new Date();
+    date.setTime(date.getTime() + (expiresDays*24*60*60*1000));
+    var expires = "expires=" + date.toGMTString();
+    console.log(expires);
+    document.cookie = cookieName+"="+cookieValue+";"+expires;
+    console.log("endSet");
+    window.location.reload();
+}
+
+function getCookie(cookieName)
+{
+    var name = cookieName + "=";
+    var ca = document.cookie.split(";");
+
+    for(var i=0; i<ca.length; i++)
+    {
+        var c = ca[i];
+        while (c.charAt(0)==' ')c=c.substring(1);
+        if(c.indexOf(name)==0)
+        {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie(cookieName)
+{
+    
+    var likeIcon=getCookie(cookieName);
+
+    if (likeIcon != "") 
+    {
+        alert("You like this one already!");
+    } 
+    else 
+    {
+        setCookie(cookieName, 1, 30);//cookieValue
+       
+    }
+}
+
+function checkUnexpiredCookie(cookieName)
+{
+    var likeIcon = getCookie(cookieName);
+    if(likeIcon !="")
+        return "y";
+    else
+        return "n";
+}
+
+function removeCookie(cookieName)
+{
+    // var deleteCookie = "like" + cookieName;
+    setCookie(cookieName, "1", -1);
+    window.location.reload();
+    return "";
+}
+
+function checkForI(i){
+    if(i==0)
+        return multiCollapse0;
+    else if(i==1)
+        return multiCollapse1;
+    else if(i==2)
+        return multiCollapse2;
+    else if(i==3)
+        return multiCollapse3;
+    else if(i==4)
+        return multiCollapse4;
+    else if(i==5)
+        return multiCollapse5;
+}
+
+function test(num){
+    console.log(num);
+}//mar 28
+
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+</html>
