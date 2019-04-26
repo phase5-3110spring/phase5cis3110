@@ -1,0 +1,418 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="go.css">
+</head>
+
+<div class="navbar">
+	<a><b>Historical Ships</b></a>
+	<p>Here you'll find a variety of historical ships</p>
+
+
+	<div class="dropdown">
+  		<button class="dropbtn">Group Members</button>
+  		<div class="dropdown-content">
+    		<a href="https://www.google.com/">Nav</a>
+    		<a href="https://www.google.com/">Abhishek</a>
+    		<a href="https://www.google.com/">Steven</a>
+    		<a href="https://www.google.com/">Wesley</a>
+  		</div>
+	</div>
+</div>
+
+<p>
+	<div class="tooltip">Hover over me
+ <span class="tooltiptext">Click on the images to view the ship's history</span>
+</div>
+</p>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 }
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+</style>
+</head>
+<body onload="myFunction()" style="margin:0;">
+
+<div id="loader"></div>
+
+<div style="display:none;" id="myDiv" class="animate-bottom">
+</div>
+
+
+<body onload="checkCookie()">
+
+	<div class="containMe" id="grid"></div>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"> </script>
+	<script>
+		var images = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"];
+		var caps = ["Korean Turtle Ship", "Viking Ship", "English Man-of-War", "Japanese Atakebune", "Roman Trireme", "CSS Virginia"];
+		var descs = ["A turtle ship, also known as Geobukseon, was a type of large Korean warship that was used intermittently by the Royal Korean Navy during the Joseon dynasty from the early 15th century up until the 19th century. It was used alongside the panokseon warships in the fight against invading Japanese naval ships. The ship's name derives from its protective shell-like covering. This design is often recognized as the first armored ship in the world.",
+    "The Viking ship was perhaps the greatest technical and artistic achievement of the European dark ages. These fast ships had the strength to survive ocean crossings while having a draft of as little as 50cm (20 inches), allowing navigation in very shallow water.",
+    "Naval artillery was redeveloped in the 14th century, but cannon did not become common at sea until the guns were capable of being reloaded quickly enough to be reused in the same battle. The size of a ship required to carry a large number of cannons made oar-based propulsion impossible, and warships came to rely primarily on sails. The sailing man-of-war emerged during the 16th century.",
+    "Atakebune were a prominent form of warship in the Sengoku period. Ranging in size from 50 tons (500 koku) to 200 tons (2000 koku), they were propelled by tens or even nearly 200 oarsmen, and sometimes had hulls reinforced with double-planking, and coated with lacquer for extra waterproofing. ",
+    "The trireme was the dominant warship from the 7th to the 4th century BC. It had three rows with rowers in the top, middle and lower rows, with approximately 50 rowers in each row.",
+    "CSS Virginia was the first steam-powered ironclad warship built by the Confederate States Navy during the first year of the American Civil War; she was constructed as a casemate ironclad using the raised and cut down original lower hull and engines of the scuttled steam frigate USS Merrimack."];
+
+
+
+
+
+		var url;
+		var urlOfDetailPage;
+		var cookieUrl;
+
+		var star = document.createElement("img");
+		var starUrl = "https://s3-us-west-2.amazonaws.com/da-dft/Phase+3/heart.png";
+		star.setAttribute("class", "star");
+		star.setAttribute("src", starUrl);
+
+		var url0;
+		var url1;
+		var url2;
+		var url3;
+		var url4;
+		var url5;
+
+		for (var i=0; i<images.length; i++)
+		{
+			console.log("image in iteration is " + images[i]);
+
+			url = "https://s3-us-west-2.amazonaws.com/da-dft/Phase+3/" + images[i];
+			urlOfDetailPage = "detailpage1.html?" + "img=" + url + "&" + "caption=" + caps[i] + "&" + "description=" + descs[i];
+
+			var grid = document.getElementById("grid");
+			var box = document.createElement("div");
+			box.setAttribute("class", "box");
+			var imgDiv = document.createElement("div");
+			imgDiv.setAttribute("class", "imgDiv");
+
+			var imgInDiv = document.createElement("img");
+			imgInDiv.setAttribute("class","pctImg");
+			imgInDiv.setAttribute("id", "img" + i);
+			imgInDiv.setAttribute("src", url);
+
+			var link = document.createElement("a");
+			link.setAttribute("href", urlOfDetailPage);
+			link.setAttribute("id", "a" + i);
+			link.appendChild(imgInDiv);
+			imgDiv.appendChild(link);
+
+
+
+			var caption = caps[i];
+			var capNode = document.createTextNode(caption);
+			var h = document.createElement("h3");
+			h.setAttribute("class", "caption")
+			h.appendChild(capNode);
+
+			var favButton = document.createElement("button");
+			favButton.setAttribute("type", "button");
+			favButton.setAttribute("class", "buttons");
+			favButton.setAttribute("id","btnFav" + i);
+			var favNode = document.createTextNode("Favorite");
+			favButton.appendChild(favNode);
+
+			var unfavButton = document.createElement("button");
+			unfavButton.setAttribute("type", "button");
+			unfavButton.setAttribute("class", "buttons");
+			unfavButton.setAttribute("id","btnUnfav" + i);
+			var unfavNode = document.createTextNode("Unfavorite");
+			unfavButton.appendChild(unfavNode);
+
+
+			box.appendChild(imgDiv);
+			box.appendChild(h);
+			box.appendChild(favButton);
+			box.appendChild(unfavButton);
+			grid.appendChild(box);
+		}
+
+		$(document).ready(function(){
+
+
+			$("#btnFav0").click(function(){
+				$("#btnFav0").hide();
+				btnFav0.parentNode.appendChild(star);
+				cookieUrl = document.getElementById("img0").src;
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				url0 = document.getElementById("a0").href;
+				var urlOfDetailPageFav = url0 + "&fav=on";
+				console.log("url of fav detail page = " + urlOfDetailPageFav);
+				$('#a0').attr("href", urlOfDetailPageFav);
+			});
+
+			$("#btnUnfav0").click(function(){
+				$("#btnFav0").show();
+				star.remove(star);
+				cookieUrl = "";
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				$('#a0').attr("href", url0);
+			});
+
+			$("#btnFav1").click(function(){
+				$("#btnFav1").hide();
+				btnFav1.parentNode.appendChild(star);
+				cookieUrl = document.getElementById("img1").src;
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				url1 = document.getElementById("a1").href;
+				var urlOfDetailPageFav = url1 + "&fav=on";
+				console.log("url of fav detail page = " + urlOfDetailPageFav);
+				$('#a1').attr("href", urlOfDetailPageFav);
+			});
+
+			$("#btnUnfav1").click(function(){
+				$("#btnFav1").show();
+				star.remove(star);
+				cookieUrl = "";
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				$('#a1').attr("href", url1);
+			});
+
+			$("#btnFav2").click(function(){
+				$("#btnFav2").hide();
+				btnFav2.parentNode.appendChild(star);
+				cookieUrl = document.getElementById("img2").src;
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				url2 = document.getElementById("a2").href;
+				var urlOfDetailPageFav = url2 + "&fav=on";
+				console.log("url of fav detail page = " + urlOfDetailPageFav);
+				$('#a2').attr("href", urlOfDetailPageFav);
+			});
+
+			$("#btnUnfav2").click(function(){
+				$("#btnFav2").show();
+				star.remove(star);
+				cookieUrl = "";
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				$('#a2').attr("href", url2);
+			});
+
+			$("#btnFav3").click(function(){
+				$("#btnFav3").hide();
+				btnFav3.parentNode.appendChild(star);
+				cookieUrl = document.getElementById("img3").src;
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				url3 = document.getElementById("a3").href;
+				var urlOfDetailPageFav = url3 + "&fav=on";
+				console.log("url of fav detail page = " + urlOfDetailPageFav);
+				$('#a3').attr("href", urlOfDetailPageFav);
+			});
+
+			$("#btnUnfav3").click(function(){
+				$("#btnFav3").show();
+				star.remove(star);
+				cookieUrl = "";
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				$('#a3').attr("href", url3);
+			});
+
+			$("#btnFav4").click(function(){
+				$("#btnFav4").hide();
+				btnFav4.parentNode.appendChild(star);
+				cookieUrl = document.getElementById("img4").src;
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				url4 = document.getElementById("a4").href;
+				var urlOfDetailPageFav = url4 + "&fav=on";
+				console.log("url of fav detail page = " + urlOfDetailPageFav);
+				$('#a4').attr("href", urlOfDetailPageFav);
+			});
+
+			$("#btnUnfav4").click(function(){
+				$("#btnFav4").show();
+				star.remove(star);
+				cookieUrl = "";
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				$('#a4').attr("href", url4);
+			});
+
+			$("#btnFav5").click(function(){
+				$("#btnFav5").hide();
+				btnFav5.parentNode.appendChild(star);
+				cookieUrl = document.getElementById("img5").src;
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				url5 = document.getElementById("a5").href;
+				var urlOfDetailPageFav = url5 + "&fav=on";
+				console.log("url of fav detail page = " + urlOfDetailPageFav);
+				$('#a5').attr("href", urlOfDetailPageFav);
+			});
+
+			$("#btnUnfav5").click(function(){
+				$("#btnFav5").show();
+				star.remove(star);
+				cookieUrl = "";
+				setCookie("url", cookieUrl, 30);
+				console.log("cookie url = " + cookieUrl);
+				$('#a5').attr("href", url5);
+			});
+		});
+
+		function setCookie(cname, cvalue, exdays) {
+
+			var d = new Date();
+			d.setTime(d.getTime() + (exdays*24*60*60*1000));
+			var expires = "expires=" + d.toGMTString();
+			//console.log("expires in " + expires);
+			document.cookie = cname + "=" + cvalue + "; " + expires;
+			console.log("cookie is " + document.cookie);
+		}
+
+		function getCookie(cname) {
+    		var name = cname + "=";
+    		var ca = document.cookie.split(';');
+    		for(var i=0; i<ca.length; i++) {
+        		var c = ca[i];
+        		while (c.charAt(0)==' ') c = c.substring(1);
+        		if (c.indexOf(name) == 0) {
+            		return c.substring(name.length, c.length);
+        		}
+    		}
+    		return "";
+		}
+
+		function checkCookie() {
+    		var c = document.cookie;
+    		console.log("cookie checker is " + c);
+    		if (c != "") {
+        		if (c == "url=https://s3.amazonaws.com/3110.spring/Phase+3/1.jpg"){
+        			var btn = document.getElementById("btnFav0");
+        			$("#btnFav0").hide();
+        			btnFav0.parentNode.appendChild(star);
+        			url0 = document.getElementById("a0").href;
+					var urlOfDetailPageFav = url0 + "&fav=on";
+					$('#a0').attr("href", urlOfDetailPageFav);
+        		} else if (c == "url=https://s3.amazonaws.com/3110.spring/Phase+3/2.jpg"){
+        			var btn = document.getElementById("btnFav1");
+        			$("#btnFav1").hide();
+        			btnFav1.parentNode.appendChild(star);
+        			url1 = document.getElementById("a1").href;
+					var urlOfDetailPageFav = url1 + "&fav=on";
+					$('#a1').attr("href", urlOfDetailPageFav);
+        		} else if (c == "url=https://s3.amazonaws.com/3110.spring/Phase+3/3.jpg"){
+        			var btn = document.getElementById("btnFav2");
+        			$("#btnFav2").hide();
+        			btnFav2.parentNode.appendChild(star);
+        			url2 = document.getElementById("a2").href;
+					var urlOfDetailPageFav = url2 + "&fav=on";
+					$('#a2').attr("href", urlOfDetailPageFav);
+        		} else if (c == "url=https://s3.amazonaws.com/3110.spring/Phase+3/4.jpg"){
+        			var btn = document.getElementById("btnFav3");
+        			$("#btnFav3").hide();
+        			btnFav3.parentNode.appendChild(star);
+        			url3 = document.getElementById("a3").href;
+					var urlOfDetailPageFav = url3 + "&fav=on";
+					$('#a3').attr("href", urlOfDetailPageFav);
+        		} else if (c == "url=https://s3.amazonaws.com/3110.spring/Phase+3/5.jpg"){
+        			var btn = document.getElementById("btnFav0");
+        			$("#btnFav4").hide();
+        			btnFav4.parentNode.appendChild(star);
+        			url4 = document.getElementById("a4").href;
+					var urlOfDetailPageFav = url4 + "&fav=on";
+					$('#a4').attr("href", urlOfDetailPageFav);
+        		} else if (c == "url=https://s3.amazonaws.com/3110.spring/Phase+3/6.jpg"){
+        			var btn = document.getElementById("btnFav5");
+        			$("#btnFav5").hide();
+        			btnFav5.parentNode.appendChild(star);
+        			url5 = document.getElementById("a5").href;
+					var urlOfDetailPageFav = url5 + "&fav=on";
+					$('#a5').attr("href", urlOfDetailPageFav);
+        		}
+    		}
+    	}
+
+
+	</script>
+
+	<script>
+var myVar;
+
+function myFunction() {
+  myVar = setTimeout(showPage, 3000);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+</script>
+
+<p>
+	<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</p>
+
+</body>
