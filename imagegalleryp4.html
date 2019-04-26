@@ -1,0 +1,246 @@
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="imagep5.css">
+</head>
+<body>
+<div class="topnav">
+  <a class="active" href="#home">Home</a>
+  <a href="#news">Navnit</a>
+  <a href="#contact">David</a>
+  <a href="#about">Steven</a>
+  <a href="#about">Abhishek</a>
+</div>
+
+<div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown link
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="https://s3.us-east-2.amazonaws.com/cis3110wnmain/wnmain.html">Phase 1</a>
+    <a class="dropdown-item" href="https://s3.us-east-2.amazonaws.com/cis3110wnmain/imagegallery.html">Phase 2</a>
+    <a class="dropdown-item" href="https://s3.us-east-2.amazonaws.com/cis3110wnmain/imagegalleryp3.html">Phase 3</a>
+  </div>
+</div>
+
+<button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="right" data-content="World!">
+  Hello <span class="badge badge-light">1</span>
+</button>
+
+<body onload="checkCookie()">
+<div class="containMe" id="grid"></div>
+<script src="https://code.jquery.com/jquery-1.12.4.js"> </script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"> </script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+
+    $(function () {
+    $('[data-toggle="popover"]').popover()
+    })
+
+    var images = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"]; //your urls
+    console.log(images);
+    var titles = ["Picture A", "Picture B", "Picture C", "Picture D", "Picture E", "Picture F"];
+    console.log(titles);
+    var desc = ["Sentence 1. Sentence 2. Sentence 3.A", "Sentence 1. Sentence 2. Sentence 3.B", "Sentence 1. Sentence 2. Sentence 3.C", "Sentence 1. Sentence 2. Sentence 3.D", "Sentence 1. Sentence 2. Sentence 3.E", "Sentence 1. Sentence 2. Sentence 3.F"]
+ 
+    var url ; //assign later, make scope global to script
+    var urlOfDetailPage;
+    var cookieUrl;
+    
+    var url0;
+	var url1;
+	var url2;
+	var url3;
+	var url4;
+	var url5;
+    
+    var star = document.createElement("img");
+    var starUrl = "https://s3.us-east-2.amazonaws.com/cis3110wnmain/star.png";
+	star.setAttribute("class", "star");
+	star.setAttribute("src", starUrl);
+    
+    
+ for(var i=0; i < images.length; i++) 
+ {
+   console.log("image in iteration is " + images[i]);
+   console.log("Title 1 is " + titles[i]);
+   console.log("Description is : " + desc[i]);
+   
+   url = "https://s3.us-east-2.amazonaws.com/cis3110wnmain/" + images[i] + "?" + "title=" + titles[i] + "&" + "desc=" + desc[i]; //append to https://s3-us-west-2.amazonaws.com/newbucket3110fall18/phase2/
+   urlOfDetailPage = "detailpage.html?" + "img=" + url; //where you will navigate, once you press the image, will send the detail page the img to analyze
+//https://github.com/stefanbund/311/blob/16b1bb98a9f3c7a10663c2a4f87651bbf3508e17/prior%20terms/spring%202018%20materials/unit%202%20URL%20parameters/urlOrigin.html#L31   var imgDiv = document.createElement("div"); //divs to house img
+ 
+    var grid = document.getElementById("grid");
+    var box = document.createElement("div");
+    box.setAttribute("class", "box");
+
+    var titleDiv = document.createElement("div");
+    var ptitle = document.createElement("p");
+    var titleprint = "Title is : " + titles[i];
+    var titleexit = document.createTextNode(titleprint);
+    ptitle.appendChild(titleexit);
+    titleDiv.appendChild(ptitle);
+    titleDiv.setAttribute("class", "titleDiv");
+    box.appendChild(titleDiv);
+ 
+ 
+   var imgDiv = document.createElement("div"); //make a div
+   imgDiv.setAttribute("class", "imgDiv"); //so it displays at 30% width, margin and padding https://css-tricks.com/almanac/properties/o/object-fit/
+   
+   var imgInDiv = document.createElement("img");
+   imgInDiv.setAttribute("class", "pctImg"); //fit to div
+   imgInDiv.setAttribute("id", "img" +i);
+   imgInDiv.setAttribute("src", url); //src to url, above, determined by for i
+   
+   var link = document.createElement("a");
+   link.setAttribute("href", urlOfDetailPage); // so you'll navigate to the url
+   link.setAttribute("id", "a" + i);
+   link.appendChild(imgInDiv); //make the image the link
+   imgDiv.appendChild(link);//place the link inside of each div
+   box.appendChild(imgDiv);//then appd to body, document.body.appendChild
+   
+   var descDiv = document.createElement("div");
+   var pdesc = document.createElement("p");
+   var descprint = "Description is: " + desc[i];
+   var descexit = document.createTextNode(descprint);
+   
+   var favButton = document.createElement("button");
+   favButton.setAttribute("type", "button");
+   favButton.setAttribute("class", "buttons");
+   favButton.setAttribute("id","btnFav" + i);
+   var favNode = document.createTextNode("Favorite");
+   favButton.appendChild(favNode); 
+   
+   var unfavButton = document.createElement("button");
+   unfavButton.setAttribute("type", "button");
+   unfavButton.setAttribute("class", "buttons");
+   unfavButton.setAttribute("id","btnUnfav" + i);
+   var unfavNode = document.createTextNode("Unfavorite");
+   unfavButton.appendChild(unfavNode);
+   
+   pdesc.appendChild(descexit);
+   descDiv.appendChild(pdesc);
+   descDiv.setAttribute("class", "descDiv");
+   box.appendChild(descDiv); 
+   box.appendChild(favButton);
+   box.appendChild(unfavButton);
+   
+   grid.appendChild(box);
+   
+ }   
+   
+
+$(document).ready(function(){
+$("#btnFav0").click(function(){
+$("#btnFav0").hide();
+btnFav0.parentNode.appendChild(star);
+cookieUrl = document.getElementById("img0").src;
+setCookie("url", cookieUrl, 30);
+console.log("cookie url = " + cookieUrl);
+url0 = document.getElementById("a0").href;
+var urlOfDetailPageFav = url0 + "&fav=on";
+console.log("url of fav detail page = " + urlOfDetailPageFav);
+$('#a0').attr("href", urlOfDetailPageFav);
+});
+$("#btnUnfav0").click(function(){
+$("#btnFav0").show();
+star.remove(star);
+cookieUrl = "";
+setCookie("url", cookieUrl, 30);
+console.log("cookie url = " + cookieUrl);
+$('#a0').attr("href", url0);
+});
+$("#btnFav1").click(function(){
+$("#btnFav1").hide();
+btnFav1.parentNode.appendChild(star);
+cookieUrl = document.getElementById("img1").src;
+setCookie("url", cookieUrl, 30);
+console.log("cookie url = " + cookieUrl);
+url1 = document.getElementById("a1").href;
+var urlOfDetailPageFav = url1 + "&fav=on";
+console.log("url of fav detail page = " + urlOfDetailPageFav);
+$('#a1').attr("href", urlOfDetailPageFav);
+});
+$("#btnUnfav1").click(function(){
+$("#btnFav1").show();
+star.remove(star);
+cookieUrl = "";
+setCookie("url", cookieUrl, 30);
+console.log("cookie url = " + cookieUrl);
+$('#a1').attr("href", url1);
+});
+$("#btnFav2").click(function(){
+$("#btnFav2").hide();
+btnFav2.parentNode.appendChild(star);
+cookieUrl = document.getElementById("img2").src;
+setCookie("url", cookieUrl, 30);
+console.log("cookie url = " + cookieUrl);
+url2 = document.getElementById("a2").href;
+var urlOfDetailPageFav = url2 + "&fav=on";
+console.log("url of fav detail page = " + urlOfDetailPageFav);
+$('#a2').attr("href", urlOfDetailPageFav);
+});
+$("#btnUnfav2").click(function(){
+$("#btnFav2").show();
+star.remove(star);
+cookieUrl = "";
+setCookie("url", cookieUrl, 30);
+console.log("cookie url = " + cookieUrl);
+$('#a2').attr("href", url2);
+});
+});
+function setCookie(cname, cvalue, exdays) {
+var d = new Date();
+d.setTime(d.getTime() + (exdays*24*60*60*1000));
+var expires = "expires=" + d.toGMTString();
+//console.log("expires in " + expires);
+document.cookie = cname + "=" + cvalue + "; " + expires;
+console.log("cookie is " + document.cookie);
+}
+function getCookie(cname) {
+var name = cname + "=";
+var ca = document.cookie.split(';');
+for(var i=0; i<ca.length; i++) {
+var c = ca[i];
+while (c.charAt(0)==' ') c = c.substring(1);
+if (c.indexOf(name) == 0) {
+return c.substring(name.length, c.length);
+}
+}
+return "";
+}
+function checkCookie() {
+  var c = document.cookie;
+  console.log("cookie checker is " + c);
+  if (c !="") {
+    if (c == "url=https://s3.us-east-2.amazonaws.com/cis3110wnmain/1.jpg"){
+      var btn = document.getElementById("btnFav0");
+      $("#btnFav0").hide();
+      btnFav0.parentNode.appendChild(starIcon);
+      url0 = document.getElementById("a0").href;
+      var urlOfDetailPageFav = url0 + "&fav=on";
+    }
+    else if (c == "url=https://s3.us-east-2.amazonaws.com/cis3110wnmain/2.jpg"){
+      var btn = document.getElementById("btnFav1");
+      $("#btnFav1").hide();
+      btnFav1.parentNode.appendChild(star);
+      url1 = document.getElementById("a1").href;
+      var urlOfDetailPageFav = url1 + "&fav=on";
+      $('#a1').attr("href", urlOfDetailPageFav);
+    }
+    else if (c == "url=https://s3.us-east-2.amazonaws.com/cis3110wnmain/3.jpg"){
+      var btn = document.getElementById("btnFav2");
+      $("#btnFav2").hide();
+      btnFav2.parentNode.appendChild(star);
+      url2 = document.getElementById("a2").href;
+      var urlOfDetailPageFav = url2 + "&fav=on";
+      $('#a2').attr("href", urlOfDetailPageFav);
+    }
+  }
+}
+</script>
+</body>
+</html>
